@@ -14,5 +14,10 @@ Singleton {
         
         imageSupported: true
         actionsSupported: true
+
+        onNotification: (notification) => {
+            NotifStorageManager.addNotification(notification)
+        }
     }
+
 }

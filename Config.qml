@@ -39,8 +39,13 @@ Singleton {
         id: notifConfig
         readonly property string monitorName: "DP-2"
 
-        readonly property point pos: Qt.point(0, Config.themeConfig.borderThickness)
+        readonly property point pos: Qt.point(Config.themeConfig.borderThickness, Config.themeConfig.borderThickness)
         readonly property ShellScreen screen: Quickshell.screens.find(s => s.name === monitorName)
                         || Quickshell.screens[0]
+
+        readonly property bool persistNotifHistory: true
+        readonly property int padding: 8
+        readonly property int notifWidth: 300
+        readonly property int notifHistoryDisplayLimit: 100
     }
 }

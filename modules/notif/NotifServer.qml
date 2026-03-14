@@ -2,6 +2,7 @@ pragma Singleton
 
 import Quickshell
 import Quickshell.Services.Notifications
+import qs
 
 Singleton {
     property alias instance: notifServer
@@ -14,10 +15,13 @@ Singleton {
         
         imageSupported: true
         actionsSupported: true
+        bodySupported: true
+        persistenceSupported: true
 
         onNotification: (notification) => {
-            NotifStorageManager.addNotification(notification)
+            if (Config.notifConfig.persistNotifHistory) {
+                NotifStorageManager.addNotification(notification)
+            }
         }
     }
-
 }

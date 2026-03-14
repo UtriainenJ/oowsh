@@ -32,7 +32,7 @@ PanelWindow {
 
         Repeater {
             model: NotifServer.trackedNotifications
-            delegate: Notif { notifData: modelData }
+            delegate: LiveNotif { notifData: modelData }
         }
     }
 }

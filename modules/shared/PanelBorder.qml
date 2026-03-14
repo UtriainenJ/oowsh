@@ -8,7 +8,7 @@ PanelWindow {
     required property PanelWindow attachedTo
 
     color: "transparent"
-    WlrLayershell.namespace: "Qs-panel-border"
+    WlrLayershell.namespace: "qs-no-blur"
 
     anchors: attachedTo.anchors
     screen: attachedTo.screen

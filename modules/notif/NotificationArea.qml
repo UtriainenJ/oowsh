@@ -2,11 +2,14 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Notifications
+import Quickshell.Wayland
 import qs
 
 PanelWindow {
     id: notifArea
     color: "transparent"
+
+    WlrLayershell.namespace: "qs-no-blur"
 
     screen: Config.notifConfig.screen
     anchors.top: true

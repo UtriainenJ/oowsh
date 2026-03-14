@@ -11,5 +11,6 @@ ShellRoot {
     PanelBorder { attachedTo: tray }
 
     NotificationArea {}
+    NotifCenter {}'
 }
 

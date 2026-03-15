@@ -29,17 +29,26 @@ Singleton {
                         || Quickshell.screens[0]
 
     }
+
     QtObject {
         id: themeConfig
         readonly property string borderColor: Colors.clrPrimary
-        readonly property int borderThickness: 3
+
+        readonly property int borderThickness: Config.BorderThicknessEnum.Medium
+
         readonly property int panelBorderRadius: 10
         
         // a very generous and rough approximation pulled out of my ass to use as a shortcut statically.
         // see ElevationShadow for more precise calculations
         readonly property int maxShadowMargin: 50 
-        
     }
+
+    enum BorderThicknessEnum {
+        Thin = 1,
+        Medium = 3,
+        Thick = 5
+    }
+    
     QtObject {
         id: notifConfig
         readonly property string monitorName: "DP-2"

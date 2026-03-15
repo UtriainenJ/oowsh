@@ -57,6 +57,7 @@ Item {
                 }
 
                 notifAge = `${ageString} ago`;
+                expireNotif();
             }
         }
 
@@ -191,5 +192,23 @@ Item {
             }
         }
     }
-    
+
+    function expireNotif() {
+        const age = ageTimer.elapsed();
+        const urgency = notifData.urgency;
+        const timeout = notifData.expireTimeout;
+
+        if (urgency === NotificationUrgency.Critical || timeout    === 0) {
+            return;
+        }
+        if (age >= timeout && timeout > 0) {
+            notifData.expire();
+            return;
+        }
+
+        const limit = urgency === NotificationUrgency.Low ? 60 : 300;
+        if (age >= limit) {
+            notifData.expire();
+        }  
+    }
 }

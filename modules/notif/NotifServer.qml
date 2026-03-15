@@ -11,7 +11,7 @@ Singleton {
     NotificationServer {
         id: notifServer
         
-        keepOnReload: true
+        keepOnReload: false
         
         imageSupported: true
         actionsSupported: true

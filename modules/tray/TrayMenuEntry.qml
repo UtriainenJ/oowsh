@@ -17,6 +17,7 @@ Item {
 
     ElevationShadow {
         attachedTo: backgroundRect
+        level: ElevationShadow.Level.Low
         visible: entryMouseArea.containsMouse
     }
 

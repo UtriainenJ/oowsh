@@ -4,13 +4,20 @@ import qs.visuals
 
 RectangularShadow {
     required property Rectangle attachedTo
+    property int level: ElevationShadow.Level.Low // default, can be overridden
+    property int shadowMargin: blur + spread + Math.abs(offset.y)
+
+    enum Level {
+        Low,
+        Medium,
+        High
+    }
 
     anchors.fill: attachedTo
-    color: Qt.alpha(Colors.clrShadow, 0.7) // darkness of shadow
     radius: attachedTo.radius
-    blur: 10
-    spread: 5
 
-    offset.y: 5
-    offset.x: 5
+    color: Qt.alpha(Colors.clrShadow, [0.7, 0.7, 0.9][level])
+    blur: [12, 15, 20][level]
+    spread: [0, -2, -1][level]
+    offset.y: [8, 16, 18][level]
 }

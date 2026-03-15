@@ -34,6 +34,11 @@ Singleton {
         readonly property string borderColor: Colors.clrPrimary
         readonly property int borderThickness: 3
         readonly property int panelBorderRadius: 10
+        
+        // a very generous and rough approximation pulled out of my ass to use as a shortcut statically.
+        // see ElevationShadow for more precise calculations
+        readonly property int maxShadowMargin: 50 
+        
     }
     QtObject {
         id: notifConfig

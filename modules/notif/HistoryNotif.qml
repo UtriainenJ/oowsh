@@ -72,7 +72,6 @@ Item {
             color: Colors.clrSecondary
         }
 
-        // uses app_icon instead of image since images are not stored as permanent urls
         Loader {
             id: iconLoader
             active: notifData.app_icon !== ""
@@ -105,7 +104,7 @@ Item {
                     delegate: Rectangle {
 
                         id: actionButton
-                        color: Colors.clrPrimaryContainer
+                        color: buttonMA.containsMouse ? Qt.alpha(Colors.clrErrorContainer, 0.3): Colors.clrPrimaryContainer
                         radius: 5
                         implicitWidth: buttonText.implicitWidth + Config.notifConfig.padding * 2
                         implicitHeight: buttonText.implicitHeight + Config.notifConfig.padding
@@ -114,25 +113,17 @@ Item {
                             id: buttonText
                             anchors.centerIn: parent
                             text: model.text
-                            color: Colors.clrOnPrimaryContainer
+                            color: buttonMA.containsMouse ? Qt.alpha(Colors.clrError, 0.5) : Colors.clrOnPrimaryContainer
                         }
 
                         MouseArea {
-                            id: actionMouseArea
+                            id: buttonMA
                             anchors.fill: parent
                             hoverEnabled: true
-                            onEntered: {
-                                actionButton.color = Qt.alpha(Colors.clrPrimaryContainer, 0.3)
-                                buttonText.color = Qt.alpha(Colors.clrOnPrimaryContainer, 0.3)
-                            }
-                            onExited: { 
-                                actionButton.color = Colors.clrPrimaryContainer
-                                buttonText.color = Colors.clrOnPrimaryContainer
-                            }
                         }
 
                         StyledToolTip {
-                            visible: actionMouseArea.containsMouse
+                            visible: buttonMA.containsMouse
                             toolTipText: "Actions cannot be used on historical notifications"
                         }
                     }

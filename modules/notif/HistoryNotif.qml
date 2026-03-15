@@ -1,8 +1,8 @@
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell.Widgets
 import qs
+import qs.modules.shared
 import qs.visuals
 import qs.visuals.effects
 
@@ -131,11 +131,9 @@ Item {
                             }
                         }
 
-                        ToolTip {
+                        StyledToolTip {
                             visible: actionMouseArea.containsMouse
-                            text: "Action: " + model.text
-                            delay: 500
-                            timeout: 3000
+                            toolTipText: "Actions cannot be used on historical notifications"
                         }
                     }
                 }

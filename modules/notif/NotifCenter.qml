@@ -14,7 +14,7 @@ FloatingWindow {
 
     ListView {
         anchors.fill: parent
-
+        spacing: 12
         model: notifHistory
         delegate: HistoryNotif {}
     }

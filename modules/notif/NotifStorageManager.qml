@@ -69,37 +69,28 @@ Singleton {
     function getHistory(limit = 50) {
         if (!db) return [];
 
-        let historyRecords = [];
+        let notifHistory = [];
 
         db.readTransaction((tx) => {
-            const notifs = tx.executeSql(
+            const data = tx.executeSql(
                 "SELECT * FROM notification_history ORDER BY timestamp DESC LIMIT ?",
                 [limit]
             );
 
-            for (let i = 0; i < notifs.rows.length; i++) {
-                let rawItem = notifs.rows.item(i);
-                let sanitizedItem = {};
+    
+            for (let i = 0; i < data.rows.length; i++) {
+                const readOnlyRow = data.rows.item(i);
+                let row = {};
+                for (let key in readOnlyRow) {
+                    row[key] = (readOnlyRow[key] === null) ? "" : readOnlyRow[key];
+                };
 
-                for (let key in rawItem) {
-                    let value = rawItem[key];
-                    sanitizedItem[key] = (value === null) ? "" : value;
-                }
+                row.hints = JSON.parse(row.hints);
+                row.actions = JSON.parse(row.actions);
 
-                try {
-                    sanitizedItem.hints = JSON.parse(sanitizedItem.hints);
-                } catch (e) {
-                    sanitizedItem.hints = {}; // fallback
-                }
-
-                try {
-                    sanitizedItem.actions = JSON.parse(sanitizedItem.actions);
-                } catch (e) {
-                    sanitizedItem.actions = [];
-                }
-                historyRecords.push(sanitizedItem);
+                notifHistory.push(row);
             }
         });
-        return historyRecords;
+        return notifHistory;
     }
 }

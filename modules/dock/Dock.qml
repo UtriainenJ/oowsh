@@ -1,6 +1,8 @@
+import QtQml
 import Quickshell
 import Quickshell.Widgets
 import qs.modules.shared
+import qs.modules.notif
 import qs
 
 Scope {
@@ -25,9 +27,17 @@ Scope {
             margin: Config.dockConfig.dockMargin
 
             Clock {}
+
+            acceptedButtons: Qt.MiddleButton
+                    onClicked: event => notifCenterComp.createObject(root)
         }
     }
     PanelBorder {
         attachedTo: dockWindow
+    }
+
+    Component {
+        id: notifCenterComp
+        NotifCenter {}
     }
 }
